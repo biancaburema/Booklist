@@ -1,0 +1,16 @@
+body {
+    background-color: thistle;
+}
+
+a {
+    color: black;
+}
+.authorForm {
+    padding: 10px;
+}
+.authorFormElement {
+    padding: 10px;
+}
+.col-sm-5 {
+    padding: 5px;
+}
