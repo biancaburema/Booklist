@@ -8,8 +8,28 @@
 
 <div class="container">
     <h1>Details van <span th:text="${book.title}"></span></h1>
+    <div>
+        <label for="ratingInput">Dit vond ik van het boek</label>
+        <input type="range" id="ratingInput" name="rating" min="1" max="10" list="tickmarks">
+        <datalist id="tickmarks">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="6"></option>
+            <option value="7"></option>
+            <option value="8"></option>
+            <option value="9"></option>
+            <option value="10"></option>
+        </datalist>
+    </div>
+    <div>
+        <label for="reviewInput"></label>
+        <textarea id="reviewInput" rows="5" placeholder="Laat hier je review achter" ></textarea>
+    </div>
 
-    <a th:href="@{/books/update/{bookTitle}(bookTitle=${book.title})}">Edit</a>
+    <a th:href="@{review/new/{bookId}(bookId=${book.bookId})}">Opslaan</a>
 </div>
 
 <div th:replace="fragments/general :: footer"></div>

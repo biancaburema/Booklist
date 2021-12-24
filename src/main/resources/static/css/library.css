@@ -14,3 +14,37 @@ a {
 .col-sm-5 {
     padding: 5px;
 }
+
+
+input[type=range] {
+    height: 34px;
+    margin: 10px 0;
+    width: 100%;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 80%;
+    height: 11px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000;
+    background: cornflowerblue;
+    border-radius: 1px;
+    border: 0px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000031;
+    border: 1px solid #00001E;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    background: #FFFFFF;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8px;
+}
+
+#reviewInput {
+    width: 100%;
+}
+
+
