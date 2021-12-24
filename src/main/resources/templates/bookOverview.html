@@ -6,7 +6,7 @@
 <body>
 <div th:replace="fragments/general :: navbar"></div>
 <div class="container">
-    <h1>Overzicht van de boeken</h1>
+    <h1>Overzicht van gelezen boeken</h1>
     <table class="table table-hover">
         <tr>
             <th>Title</th>
@@ -15,10 +15,11 @@
             <th>Zet op te lezen lijst</th>
         </tr>
         <tr th:each="book : ${allBooks}">
-            <td> <a th:href="@{/books/update/{bookTitle}(bookTitle=${book.title})}" th:text="${book.title}"></a></td>
+            <td><a th:href="@{/book/details/{bookTitle}(bookTitle=${book.title})}" th:text="${book.title}"></a></td>
             <td th:text="${book.authorsDisplayString}"></td>
-            <td th:text="${book.numberOfAvailableCopies}"></td>
-            <td><a th:href="@{/copy/new/{bookId}(bookId=${book.bookId})}" role="button" class="btn btn-outline-primary">Bestel</a></td>
+            <td th:text="${book.numberOfTimesRead}"></td>
+            <td><a th:href="@{/copy/new/{bookId}(bookId=${book.bookId})}" role="button" class="btn btn-outline-primary">Gelezen</a></td>
+            <td><a th:href="@{/books/update/{bookTitle}(bookTitle=${book.title})}" role="button" class="btn btn-outline-primary">Update boek</a></td>
         </tr>
     </table>
     <div>

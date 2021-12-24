@@ -29,7 +29,7 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<Copy> copies;
 
-    public int getNumberOfAvailableCopies() {
+    public int getNumberOfTimesRead() {
         int count = 0;
         for (Copy copy : copies) {
             count += copy.isAvailable() ? 1 : 0;
