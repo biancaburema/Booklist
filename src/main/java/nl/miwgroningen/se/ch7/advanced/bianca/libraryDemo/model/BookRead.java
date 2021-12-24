@@ -16,14 +16,14 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Getter @Setter
-public class Copy {
+public class BookRead {
 
     @Id
     @GeneratedValue
-    private Long copyId;
+    private Long bookReadId;
 
     @ManyToOne
     private Book book;
 
-    private boolean available = true;
+    private boolean read = true;
 }

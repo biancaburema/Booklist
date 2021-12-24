@@ -1,9 +1,9 @@
 package nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.controller;
 
 import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.model.Book;
-import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.model.Copy;
+import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.model.BookRead;
 import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.repository.BookRepository;
-import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.repository.CopyRepository;
+import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.repository.BookReadRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,25 +17,25 @@ import java.util.Optional;
  */
 
 @Controller
-public class CopyController {
+public class BookReadController {
 
     private BookRepository bookRepository;
-    private CopyRepository copyRepository;
+    private BookReadRepository bookReadRepository;
 
-    public CopyController(BookRepository bookRepository, CopyRepository copyRepository) {
+    public BookReadController(BookRepository bookRepository, BookReadRepository copyRepository) {
         this.bookRepository = bookRepository;
-        this.copyRepository = copyRepository;
+        this.bookReadRepository = copyRepository;
     }
 
-    @GetMapping("/copy/new/{bookId}")
-    protected String createNewCopy(@PathVariable("bookId") Long bookId) {
+    @GetMapping("/booksread/new/{bookId}")
+    protected String createNewBookRead(@PathVariable("bookId") Long bookId) {
         Optional<Book> book = bookRepository.findById(bookId);
         if (book.isEmpty()) {
             return "redirect:/";
         }
-        Copy newCopy = new Copy();
-        newCopy.setBook(book.get());
-        copyRepository.save(newCopy);
+        BookRead newBookRead = new BookRead();
+        newBookRead.setBook(book.get());
+        bookReadRepository.save(newBookRead);
         return "redirect:/";
     }
 
