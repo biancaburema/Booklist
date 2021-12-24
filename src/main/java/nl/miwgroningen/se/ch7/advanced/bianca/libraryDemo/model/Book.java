@@ -27,12 +27,12 @@ public class Book {
     private Set<Author> authors = new HashSet<>();
 
     @OneToMany(mappedBy = "book")
-    private List<BookRead> copies;
+    private List<Copy> copies;
 
     public int getNumberOfTimesRead() {
         int count = 0;
-        for (BookRead copy : copies) {
-            count += copy.isRead() ? 1 : 0;
+        for (Copy copy : copies) {
+            count += copy.isAvailable() ? 1 : 0;
         }
         return  count;
     }
