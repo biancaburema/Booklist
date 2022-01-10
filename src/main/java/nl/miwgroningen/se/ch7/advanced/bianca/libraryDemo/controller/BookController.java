@@ -1,8 +1,10 @@
 package nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.controller;
 
 import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.model.Book;
+import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.model.Review;
 import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.repository.AuthorRepository;
 import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.repository.BookRepository;
+import nl.miwgroningen.se.ch7.advanced.bianca.libraryDemo.repository.ReviewRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,10 +25,12 @@ public class BookController {
 
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
+    private ReviewRepository reviewRepository;
 
-    public BookController(BookRepository bookRepository, AuthorRepository authorRepository) {
+    public BookController(BookRepository bookRepository, AuthorRepository authorRepository, ReviewRepository reviewRepository) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     @GetMapping({"/", "/books"})
@@ -34,6 +38,7 @@ public class BookController {
         model.addAttribute("allBooks", bookRepository.findAll());
         return "bookOverview";
     }
+
     @GetMapping("book/new")
     protected String showBookForm(Model model) {
         model.addAttribute("book", new Book());
@@ -61,7 +66,7 @@ public class BookController {
     }
 
     @GetMapping("/book/details/{bookTitle}")
-    protected String showBookDetais(@PathVariable("bookTitle") String bookTitle, Model model) {
+    protected String showBookDetails(@PathVariable("bookTitle") String bookTitle, Model model) {
         Optional<Book> book = bookRepository.findByTitle(bookTitle);
         if (book.isEmpty()) {
             return "redirect:/books";
@@ -70,4 +75,22 @@ public class BookController {
         return "bookDetails";
     }
 
+    @GetMapping("/book/review/new")
+    protected String showReviewForm(Model model) {
+        model.addAttribute("newReview", new Review());
+        return "reviewForm";
+    }
+
+    @GetMapping("/book/review/{bookTitle}")
+    protected String showReviewForm(@PathVariable("bookTitle") String bookTitle, Model model) {
+        Optional<Book> book = bookRepository.findByTitle(bookTitle);
+        if (book.isEmpty()) {
+            return "redirect:/books";
+        }
+        model.addAttribute("book", book.get());
+        model.addAttribute("allReviews", reviewRepository.findAll());
+        return "reviewForm";
+    }
+
 }
+

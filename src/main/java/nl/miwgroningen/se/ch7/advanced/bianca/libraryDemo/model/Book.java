@@ -29,6 +29,9 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<Copy> copies;
 
+    @OneToMany(mappedBy = "book")
+    private List<Review> reviews;
+
     public int getNumberOfTimesRead() {
         int count = 0;
         for (Copy copy : copies) {

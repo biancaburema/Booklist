@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+    <title>Overzicht van het boek</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+<div class="container">
+    <h1>Maak een review</h1>
+    <form th:action="@{/book/review/new}" method="post" th:object="${newReview}">
+        <label for="ratingInput">Dit vond ik van het boek</label>
+        <input type="range" id="ratingInput" name="rating" min="1" max="10" list="tickMarks">
+        <datalist id="tickMarks">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </datalist>
+            <label for="reviewInput"></label>
+        <textarea id="reviewInput" rows="5" placeholder="Laat hier je review achter" ></textarea>
+    <input type="submit" value="Sla review op" class="btn btn-outline-primary" role="button"/>
+    </form>
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+</body>
+</html>
